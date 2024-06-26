@@ -23,6 +23,11 @@ export default defineConfig({
 
         socialLinks: [
             {icon: 'github', link: 'https://github.com/timmattison/property-taxes-cc'}
-        ]
-    }
+        ],
+
+        search: {
+            provider: 'local'
+        }
+    },
+    base: '/',
 })
