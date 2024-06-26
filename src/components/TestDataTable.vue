@@ -62,6 +62,108 @@ const data: Payment[] = [
         status: 'failed',
         email: 'carmella@hotmail.com',
     },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
+    {
+        id: 'bhqecj4p',
+        amount: 721,
+        status: 'failed',
+        email: 'carmella@hotmail.com',
+    },
 ]
 
 const columns: ColumnDef<Payment>[] = [
