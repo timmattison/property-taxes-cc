@@ -11,8 +11,8 @@ import {
 import { ArrowUpDown, ChevronDown } from 'lucide-vue-next'
 
 import { h, ref } from 'vue'
+import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
@@ -26,16 +26,19 @@ import { RolledUpParcels, RolledUpParcelType } from '@/types/property'
 const columns: ColumnDef<RolledUpParcelType>[] = [
     {
         accessorKey: 'topParcelId',
+        headerText: 'Parcel ID',
         header: 'Parcel ID',
         cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('topParcelId')),
     },
     {
         accessorKey: 'propertyLocation',
+        headerText: 'Location',
         header: 'Location',
         cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('propertyLocation')),
     },
     {
         accessorKey: 'fullMarketValue',
+        headerText: 'Market value',
         header: ({ column }) => {
             return h(Button, {
                 variant: 'ghost',
@@ -56,6 +59,7 @@ const columns: ColumnDef<RolledUpParcelType>[] = [
     },
     {
         accessorKey: 'totalTaxes',
+        headerText: 'Total taxes',
         header: () => h('div', { class: 'text-right' }, 'Total taxes'),
         cell: ({ row }) => {
             const amount = Number.parseFloat(row.getValue('totalTaxes'))
@@ -71,6 +75,7 @@ const columns: ColumnDef<RolledUpParcelType>[] = [
     },
     {
         accessorKey: 'totalVillageAssessment',
+        headerText: 'Village assessment',
         header: () => h('div', { class: 'text-right' }, 'Village assessment'),
         cell: ({ row }) => {
             const amount = Number.parseFloat(row.getValue('totalVillageAssessment'))
@@ -86,6 +91,7 @@ const columns: ColumnDef<RolledUpParcelType>[] = [
     },
     {
         accessorKey: 'totalTownAssessment',
+        headerText: 'Town assessment',
         header: () => h('div', { class: 'text-right' }, 'Town assessment'),
         cell: ({ row }) => {
             const amount = Number.parseFloat(row.getValue('totalTownAssessment'))
@@ -137,12 +143,12 @@ const table = useVueTable({
 <template>
     <div class="w-full">
         <div class="flex gap-2 items-center py-4">
-            <!--            <Input-->
-            <!--                class="max-w-sm"-->
-            <!--                placeholder="Filter emails..."-->
-            <!--                :model-value="table.getColumn('email')?.getFilterValue() as string"-->
-            <!--                @update:model-value=" table.getColumn('email')?.setFilterValue($event)"-->
-            <!--            />-->
+            <Input
+                class="max-w-sm"
+                placeholder="Filter property..."
+                :model-value="table.getColumn('propertyLocation')?.getFilterValue() as string"
+                @update:model-value=" table.getColumn('propertyLocation')?.setFilterValue($event)"
+            />
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                     <Button variant="outline" class="ml-auto">
@@ -160,7 +166,7 @@ const table = useVueTable({
               column.toggleVisibility(!!value)
             }"
                     >
-                        {{ column.id }}
+                        {{ column.columnDef.headerText }}
                     </DropdownMenuCheckboxItem>
                 </DropdownMenuContent>
             </DropdownMenu>
