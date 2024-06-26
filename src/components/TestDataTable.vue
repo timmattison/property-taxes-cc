@@ -11,7 +11,6 @@ import {
 import { ArrowUpDown, ChevronDown } from 'lucide-vue-next'
 
 import { h, ref } from 'vue'
-import DropdownAction from './DataTableDemoColumn.vue'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
@@ -20,153 +19,11 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Input } from '@/components/ui/input'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { valueUpdater } from '@/lib/utils'
+import { RolledUpParcels, RolledUpParcelType } from '@/types/property'
 
-export interface Payment {
-    id: string
-    amount: number
-    status: 'pending' | 'processing' | 'success' | 'failed'
-    email: string
-}
-
-const data: Payment[] = [
-    {
-        id: 'm5gr84i9',
-        amount: 316,
-        status: 'success',
-        email: 'ken99@yahoo.com',
-    },
-    {
-        id: '3u1reuv4',
-        amount: 242,
-        status: 'success',
-        email: 'Abe45@gmail.com',
-    },
-    {
-        id: 'derv1ws0',
-        amount: 837,
-        status: 'processing',
-        email: 'Monserrat44@gmail.com',
-    },
-    {
-        id: '5kma53ae',
-        amount: 874,
-        status: 'success',
-        email: 'Silas22@gmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-    {
-        id: 'bhqecj4p',
-        amount: 721,
-        status: 'failed',
-        email: 'carmella@hotmail.com',
-    },
-]
-
-const columns: ColumnDef<Payment>[] = [
+const columns: ColumnDef<RolledUpParcelType>[] = [
     {
         id: 'select',
         header: ({ table }) => h(Checkbox, {
@@ -183,25 +40,30 @@ const columns: ColumnDef<Payment>[] = [
         enableHiding: false,
     },
     {
-        accessorKey: 'status',
-        header: 'Status',
-        cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('status')),
+        accessorKey: 'parcelId',
+        header: 'Parcel ID',
+        cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('parcelId')),
     },
     {
-        accessorKey: 'email',
+        accessorKey: 'location',
+        header: 'Location',
+        cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('propertyLocation')),
+    },
+    {
+        accessorKey: 'marketValue',
         header: ({ column }) => {
             return h(Button, {
                 variant: 'ghost',
                 onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-            }, () => ['Email', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+            }, () => ['Market value', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
         },
-        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('email')),
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('fullMarketValue')),
     },
     {
-        accessorKey: 'amount',
-        header: () => h('div', { class: 'text-right' }, 'Amount'),
+        accessorKey: 'totalTaxes',
+        header: () => h('div', { class: 'text-right' }, 'Total taxes'),
         cell: ({ row }) => {
-            const amount = Number.parseFloat(row.getValue('amount'))
+            const amount = Number.parseFloat(row.getValue('totalTaxes'))
 
             // Format the amount as a dollar amount
             const formatted = new Intl.NumberFormat('en-US', {
@@ -213,14 +75,33 @@ const columns: ColumnDef<Payment>[] = [
         },
     },
     {
-        id: 'actions',
-        enableHiding: false,
+        accessorKey: 'totalVillageAssessment',
+        header: () => h('div', { class: 'text-right' }, 'Village assessment'),
         cell: ({ row }) => {
-            const payment = row.original
+            const amount = Number.parseFloat(row.getValue('totalVillageAssessment'))
 
-            return h('div', { class: 'relative' }, h(DropdownAction, {
-                payment,
-            }))
+            // Format the amount as a dollar amount
+            const formatted = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+            }).format(amount)
+
+            return h('div', { class: 'text-right font-medium' }, formatted)
+        },
+    },
+    {
+        accessorKey: 'totalTownAssessment',
+        header: () => h('div', { class: 'text-right' }, 'Town assessment'),
+        cell: ({ row }) => {
+            const amount = Number.parseFloat(row.getValue('totalTownAssessment'))
+
+            // Format the amount as a dollar amount
+            const formatted = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+            }).format(amount)
+
+            return h('div', { class: 'text-right font-medium' }, formatted)
         },
     },
 ]
@@ -231,7 +112,7 @@ const columnVisibility = ref<VisibilityState>({})
 const rowSelection = ref({})
 
 const table = useVueTable({
-    data,
+    RolledUpParcels,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -261,12 +142,12 @@ const table = useVueTable({
 <template>
     <div class="w-full">
         <div class="flex gap-2 items-center py-4">
-            <Input
-                class="max-w-sm"
-                placeholder="Filter emails..."
-                :model-value="table.getColumn('email')?.getFilterValue() as string"
-                @update:model-value=" table.getColumn('email')?.setFilterValue($event)"
-            />
+            <!--            <Input-->
+            <!--                class="max-w-sm"-->
+            <!--                placeholder="Filter emails..."-->
+            <!--                :model-value="table.getColumn('email')?.getFilterValue() as string"-->
+            <!--                @update:model-value=" table.getColumn('email')?.setFilterValue($event)"-->
+            <!--            />-->
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                     <Button variant="outline" class="ml-auto">

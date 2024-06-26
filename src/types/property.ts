@@ -38,16 +38,14 @@ export const RolledUpParcelSchema = z.object({
   totalTownAssessment: z.number(),
 })
 
-export type RolledUpParcel = z.infer<typeof RolledUpParcelSchema>
+export type RolledUpParcelType = z.infer<typeof RolledUpParcelSchema>
 
-const DataSchema = z.array(RolledUpParcelSchema)
-
-export type Data = z.infer<typeof DataSchema>
+const RolledUpParcelArraySchema = z.array(RolledUpParcelSchema)
 
 export interface HasDefault {
   default: any
 }
 
-export const Data: RolledUpParcel[] = DataSchema.parse(
+export const RolledUpParcels: RolledUpParcelType[] = RolledUpParcelArraySchema.parse(
   (data as any as HasDefault).default,
 )
