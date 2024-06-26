@@ -26,18 +26,21 @@ import { RolledUpParcels, RolledUpParcelType } from '@/types/property'
 const columns: ColumnDef<RolledUpParcelType>[] = [
     {
         accessorKey: 'topParcelId',
+        // @ts-ignore
         headerText: 'Parcel ID',
         header: 'Parcel ID',
         cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('topParcelId')),
     },
     {
         accessorKey: 'propertyLocation',
+        // @ts-ignore
         headerText: 'Location',
         header: 'Location',
         cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('propertyLocation')),
     },
     {
         accessorKey: 'fullMarketValue',
+        // @ts-ignore
         headerText: 'Market value',
         header: ({ column }) => {
             return h(Button, {
@@ -59,6 +62,7 @@ const columns: ColumnDef<RolledUpParcelType>[] = [
     },
     {
         accessorKey: 'totalTaxes',
+        // @ts-ignore
         headerText: 'Total taxes',
         header: () => h('div', { class: 'text-right' }, 'Total taxes'),
         cell: ({ row }) => {
@@ -75,6 +79,7 @@ const columns: ColumnDef<RolledUpParcelType>[] = [
     },
     {
         accessorKey: 'totalVillageAssessment',
+        // @ts-ignore
         headerText: 'Village assessment',
         header: () => h('div', { class: 'text-right' }, 'Village assessment'),
         cell: ({ row }) => {
@@ -91,6 +96,7 @@ const columns: ColumnDef<RolledUpParcelType>[] = [
     },
     {
         accessorKey: 'totalTownAssessment',
+        // @ts-ignore
         headerText: 'Town assessment',
         header: () => h('div', { class: 'text-right' }, 'Town assessment'),
         cell: ({ row }) => {
@@ -166,7 +172,10 @@ const table = useVueTable({
               column.toggleVisibility(!!value)
             }"
                     >
-                        {{ column.columnDef.headerText }}
+                        {{
+                            // @ts-ignore
+                            column.columnDef.headerText
+                        }}
                     </DropdownMenuCheckboxItem>
                 </DropdownMenuContent>
             </DropdownMenu>
