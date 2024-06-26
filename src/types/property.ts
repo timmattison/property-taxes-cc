@@ -2,7 +2,7 @@ import * as data from '../data/data.json' assert { type: 'json' }
 import { z } from 'zod'
 
 const PropertyRecordSchema = z.object({
-  parcelId: z.string(),
+  id: z.string(),
   currentOwnersName: z.array(z.string()),
   propertyLocation: z.string(),
   propertyClass: z.string(),
