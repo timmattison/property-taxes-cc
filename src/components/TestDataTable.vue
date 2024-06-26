@@ -229,7 +229,7 @@ const table = useVueTable({
             </div>
             <div class="space-x-2">
                 <Button
-                    variant="default"
+                    variant="outline"
                     size="sm"
                     :disabled="!table.getCanPreviousPage()"
                     @click="table.previousPage()"
