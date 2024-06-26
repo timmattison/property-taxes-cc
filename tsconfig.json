@@ -20,9 +20,4 @@
       "DOM"
     ]
   },
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
 }
