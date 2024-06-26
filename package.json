@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/three": "^0.165.0",
     "typescript": "^5.5.2",
     "vitepress": "^1.2.3",
     "vitepress-sidebar": "^1.23.2"
@@ -10,12 +11,15 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
+    "@tresjs/cientos": "^3.9.0",
+    "@tresjs/core": "^4.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.397.0",
     "radix-vue": "^1.8.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.165.0",
     "vue": "^3.4.30"
   },
   "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
