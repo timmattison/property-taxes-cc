@@ -25,39 +25,34 @@ import { RolledUpParcels, RolledUpParcelType } from '@/types/property'
 
 const columns: ColumnDef<RolledUpParcelType>[] = [
     {
-        id: 'select',
-        header: ({ table }) => h(Checkbox, {
-            'checked': table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate'),
-            'onUpdate:checked': value => table.toggleAllPageRowsSelected(!!value),
-            'ariaLabel': 'Select all',
-        }),
-        cell: ({ row }) => h(Checkbox, {
-            'checked': row.getIsSelected(),
-            'onUpdate:checked': value => row.toggleSelected(!!value),
-            'ariaLabel': 'Select row',
-        }),
-        enableSorting: false,
-        enableHiding: false,
-    },
-    {
-        accessorKey: 'parcelId',
+        accessorKey: 'topParcelId',
         header: 'Parcel ID',
-        cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('parcelId')),
+        cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('topParcelId')),
     },
     {
-        accessorKey: 'location',
+        accessorKey: 'propertyLocation',
         header: 'Location',
         cell: ({ row }) => h('div', { class: 'capitalize' }, row.getValue('propertyLocation')),
     },
     {
-        accessorKey: 'marketValue',
+        accessorKey: 'fullMarketValue',
         header: ({ column }) => {
             return h(Button, {
                 variant: 'ghost',
                 onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
             }, () => ['Market value', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
         },
-        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('fullMarketValue')),
+        cell: ({ row }) => {
+            const amount = Number.parseFloat(row.getValue('fullMarketValue'))
+
+            // Format the amount as a dollar amount
+            const formatted = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+            }).format(amount)
+
+            return h('div', { class: 'text-right font-medium' }, formatted)
+        },
     },
     {
         accessorKey: 'totalTaxes',
@@ -112,7 +107,7 @@ const columnVisibility = ref<VisibilityState>({})
 const rowSelection = ref({})
 
 const table = useVueTable({
-    RolledUpParcels,
+    data: RolledUpParcels,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
