@@ -22,6 +22,9 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { valueUpdater } from '@/lib/utils'
 import { RolledUpParcels, RolledUpParcelType } from '@/types/property'
+import { Toaster, useToast } from '@/components/ui/toast'
+
+const { toast } = useToast()
 
 const columns: ColumnDef<RolledUpParcelType>[] = [
     {
@@ -148,6 +151,7 @@ const table = useVueTable({
 
 <template>
     <div class="w-full">
+        <Toaster />
         <div class="flex gap-2 items-center py-4">
             <Input
                 class="max-w-sm"
