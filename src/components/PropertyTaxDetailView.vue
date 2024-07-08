@@ -110,10 +110,10 @@ function taxRateChange(type: string, requestedYear: number) {
             <div>No history</div>
         </template>
         <template v-else>
-            <div class="mb-4" v-for="type in Object.keys(groupedHistoricalTaxes)">
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold">{{ uiStore.selectedProperty!.propertyLocation }}</h2>
-                </div>
+            <div class="p-4">
+                <h2 class="text-lg font-semibold">{{ uiStore.selectedProperty!.propertyLocation }}</h2>
+            </div>
+            <div class="mb-4" v-for="type in Object.keys(groupedHistoricalTaxes)" v-if="type != 'VILLAGE GARBAGE'">
                 <div class="rounded-md border">
                     <div class="p-4">
                         <h2 class="text-lg font-semibold">{{ type }}</h2>
