@@ -3,6 +3,7 @@ import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
+import { createPinia } from 'pinia'
 
 export default {
   extends: DefaultTheme,
@@ -12,6 +13,8 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    // ...
+    const pinia = createPinia()
+
+    app.use(pinia)
   }
 } satisfies Theme

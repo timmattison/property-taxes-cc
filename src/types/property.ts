@@ -33,6 +33,8 @@ const HistoricalTaxSchema = z.object({
     amount: z.number(),
 })
 
+export type HistoricalTaxType = z.infer<typeof HistoricalTaxSchema>
+
 export const RolledUpParcelSchema = z.object({
     topParcelId: z.string(),
     propertyLocation: z.string(),

@@ -23,8 +23,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { valueUpdater } from '@/lib/utils'
 import { RolledUpParcels, RolledUpParcelType } from '@/types/property'
 import { Toaster, useToast } from '@/components/ui/toast'
+import { useUiStore } from '@/data/ui-store'
 
 const { toast } = useToast()
+
+const uiStore = useUiStore()
 
 const columns: ColumnDef<RolledUpParcelType>[] = [
     {
@@ -147,6 +150,14 @@ const table = useVueTable({
         },
     },
 })
+
+function setSelectedProperty(row: RolledUpParcelType) {
+    if ((uiStore.selectedProperty !== undefined) && (row.topParcelId == uiStore.selectedProperty.topParcelId)) {
+        return
+    }
+
+    uiStore.setSelectedProperty(row)
+}
 </script>
 
 <template>
@@ -199,8 +210,7 @@ const table = useVueTable({
                         <TableRow
                             v-for="row in table.getRowModel().rows"
                             :key="row.id"
-                            :data-state="row.getIsSelected() && 'selected'"
-                        >
+                            @click="setSelectedProperty(row.original)">
                             <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
                                 <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
                             </TableCell>
@@ -221,8 +231,7 @@ const table = useVueTable({
 
         <div class="flex items-center justify-end space-x-2 py-4">
             <div class="flex-1 text-sm text-muted-foreground">
-                {{ table.getFilteredSelectedRowModel().rows.length }} of
-                {{ table.getFilteredRowModel().rows.length }} row(s) selected.
+                {{ table.getPageCount() }} page(s)
             </div>
             <div class="space-x-2">
                 <Button
